@@ -24,9 +24,9 @@ THE SOFTWARE.
 /**
  * @module drivelist-scanner
  */
-var DrivelistScanner, EventEmitter, Promise, compare, drivelist, _,
-  __hasProp = {}.hasOwnProperty,
-  __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+var DrivelistScanner, EventEmitter, Promise, _, compare, drivelist,
+  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
 
 EventEmitter = require('events').EventEmitter;
 
@@ -38,8 +38,8 @@ drivelist = Promise.promisifyAll(require('drivelist'));
 
 compare = require('./compare');
 
-module.exports = DrivelistScanner = (function(_super) {
-  __extends(DrivelistScanner, _super);
+module.exports = DrivelistScanner = (function(superClass) {
+  extend(DrivelistScanner, superClass);
 
 
   /**
