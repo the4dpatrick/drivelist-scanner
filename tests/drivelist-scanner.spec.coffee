@@ -210,8 +210,27 @@ describe 'Drive Scanner:', ->
 		afterEach ->
 			@drivelistListAsyncstub.restore()
 
-		it 'should eventually become an object[] of non-system drives', ->
+		it 'should eventually become an object[] of both non-system & system drives', ->
 			promise = DrivelistScanner.getDrives()
+			m.chai.expect(promise).to.eventually.become [
+				{
+					device: '\\\\.\\PHYSICALDRIVE0',
+					description: 'WDC WD10JPVX-75JC3T0',
+					size: '1000 GB'
+					mountpoint: 'C:',
+					system: true
+				},
+				{
+					device: '\\\\.\\PHYSICALDRIVE1',
+					description: 'Generic STORAGE DEVICE USB Device',
+					size: '15 GB'
+					mountpoint: 'D:',
+					system: false
+				}
+			]
+
+		it 'should eventually become an object[] of only non-system drives', ->
+			promise = DrivelistScanner.getDrives(true)
 			m.chai.expect(promise).to.eventually.become [
 				{
 					device: '\\\\.\\PHYSICALDRIVE1',

@@ -144,8 +144,11 @@ module.exports = DrivelistScanner = (function(superClass) {
   	 * 	console.log(drives)
    */
 
-  DrivelistScanner.getDrives = function() {
+  DrivelistScanner.getDrives = function(rejectSystemDrives) {
     return drivelist.listAsync().then(function(drives) {
+      if (!rejectSystemDrives) {
+        return drives;
+      }
       return _.reject(drives, {
         system: true
       });

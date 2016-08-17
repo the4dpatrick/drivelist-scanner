@@ -121,8 +121,9 @@ module.exports = class DrivelistScanner extends EventEmitter
 	# DrivelistScanner.getDrives().then (drives) ->
 	# 	console.log(drives)
 	###
-	@getDrives: ->
+	@getDrives: (rejectSystemDrives) ->
 		drivelist.listAsync().then (drives) ->
+			return drives unless rejectSystemDrives
 			return _.reject(drives, system: true)
 
 	###*
